@@ -1,190 +1,191 @@
 <!Dokumenttyp HTML>
 <HTML lang="de">
 <Kopf>
-<Meta Zeichensatz  $('aktualisiert').textContent='Aktualisiert: '+neues Datum().toLocaleTimeString('de-DE',{Stunde:'2-stellig',Minute:'2-stellig'})+' · OpenLigaDB';$('updated').textContent='Aktualisiert: '+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' · OpenLigaDB';"utf-8">
+<Meta Zeugensatz    $('aktualisiert').textContent='Aktualisiert: '+neues Datum().toLocaleTimeString('de-DE',{Stunde:'2-stellig',Minute:'2-stellig'})+' · OpenLigaDB';$('aktualisiert').textContent='Aktualisiert: '+neues Datum().toLocaleTimeString('de-DE',{Stunde:'2-stellig',Minute:'2-stellig'})+' · OpenLigaDB';"utf-8">
 <Meta Name="Ansichtsfenster" Inhalieren=„Breite=Gerätebreite,Anfangsskala=1“>
 <Titel>Bundesliga Dashboard</Titel>
-
+    <style>
+Titel
 :root{
-    color-scheme:dark;
-    --bg:#111111;
-    --panel:#1c1c1c;
-    --line:#383838;
-    --muted:#a6a6a6;
-    --accent:#e30613;
-    --text:#ffffff
+.Stummgeschaltet{Farbe:var(--stummgeschaltet)}Farbschema: Dunkel; Farbschema: eintauen;
+    Halt Rechtsfruchtigen: Raum dazwischen;- bg:#111111;-bg:#111111;
+    --Panel:#1c1c1c;--Panel:#1c1c1c;
+    - Zeile:#383838;--Zeile:#383838;
+    - Stummgeschaltet:#a6a6a6;--stummgeschaltet:#a6a6a6;
+    - Akzent:#e30613;-Akzent:#e30613;
+    --Text:#ffffff--text:#ffffff
 }
 
-*{box-sizing:border-box}
-body{
-    margin:0;
-    padding:14px;
-    background:linear-gradient(145deg,#111111,#242424);
-    color:var(--text);
-    font:14px/1.45 system-ui,Segoe UI,Arial,sans-serif
+*{Boxgrüße: Border-Box}
+Körper{
+    Marge:0;Marge:0;
+    Polsterung: 14 Pixel; Polsterung: 14 Pixel;
+    Hintergrund: Linearistischer Gradient (145 Grad,#111111,#242424);Hintergrund: Linearer Gradient (145 Grad,#111111,#242424);
+    Farbe: var(--text);Farbe:var(--text);
+    Schriftart: 14px/1,45 System-UI,Segoe UI,Arial, Serifenlosfont:14px/1,45 System-UI,Segoe UI,Arial, Serifenlos
 }
 
-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    margin-bottom:12px
+Kopfzeile{
+    Anzeige:flex;
+    Elemente anzeigen: Mitte;
+    Halt Rechtsfruchtigen: Raum dazwischen;
+    Lücke: 10 Pixel;
+    Rand bis: 12px
 }
 
 h1{
-    font-size:19px;
-    margin:0;
-    font-weight:750;
-    letter-spacing:.2px
+    Schriftgrüße: 19 Pixel;
+    Marge:0;
+    Schriftstücke: 750;
+    Buchstabenabstand: 0,2 Pixel
 }
 
-.sub{font-size:11px;color:var(--muted)}
+.sub{Schriftgrüße:11px;Farbe:var(--stummgeschaltet)}
 
-.pill{
-    font-size:10px;
-    color:#ffffff;
-    border:1px solid #a9000b;
-    background:#e30613;
-    border-radius:99px;
-    padding:4px 8px;
-    white-space:nowrap
+.Pille{
+    Schriftgrüße: 10 Pixel;
+    Farbe:#ffffff;
+    Rand:1px solide #a9000b;
+    Hintergrund:#e30613;
+    Randradius: 99 Pixel;
+    Polsterung: 4px 8px;
+    Leerzeichen:nowrap
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:11px
+.Gitter{
+    Anzeige: Raster;
+    Rastervorlagenspalten:1fr;
+    Lücke: 11px
 }
 
-section{
-    background:rgba(28,28,28,.96);
-    border:1px solid var(--line);
-    border-radius:13px;
-    padding:12px;
-    min-width:0
+Schnitt{
+    Hintergrund: rgba (28,28,28,.96);
+    Rahmen: 1px solide Variable (--Zeile);
+    Randradius: 13 Pixel;
+    Polsterung: 12 Pixel;
+    Mindestbreite: 0
 }
 
 h2{
-    font-size:13px;
-    text-transform:uppercase;
-    letter-spacing:.8px;
-    color:#ffffff;
-    margin:0 0 9px
+    Schriftgrüße: 13 Pixel;
+    Texttransformation: Großbuchstäbchen;
+    Buchstabenabstand: 0,8 Pixel;
+    Farbe:#ffffff;
+    Rand:0 0 9px
 }
 
-.muted{color:var(--muted)}
-.matches{display:grid;gap:7px}
+.Stummgeschaltet{Farbe:var(--stummgeschaltet)}
+.Übereinstimmungen{Anzeige:Raster;Lücke:7px}
 
-.match{
-    display:grid;
-    grid-template-columns:1fr auto 1fr;
-    align-items:center;
-    gap:7px;
-    padding:8px 9px;
-    border-radius:9px;
-    background:#292929
+.Übereinstimmung{
+    Anzeige: Raster;
+    Rastervorlagenspalten:1fr automatisch 1fr;
+    Elemente anzeigen: Mitte;
+    Lücke: 7 Pixel;
+    Polsterung: 8px 9px;
+    Randradius: 9 Pixel;
+    Hintergrund:#292929
 }
 
-.team{
-    min-width:0;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap
+.Team{
+    Mindestbreite: 0;
+    Überlauf: versteckt;
+    Textüberlauf:Ellipse;
+    Leerzeichen:nowrap
 }
 
-.team:last-child{text-align:right}
+.Team: letztes Kind{Textausrichtung: rechts}
 
-.score{
-    font-weight:800;
-    font-size:15px;
-    white-space:nowrap
+.Punktzahl{
+    Schriftstärke: 800;
+    Schriftgröße: 15 Pixel;
+    Leerzeichen:nowrap
 }
 
-.time{
-    font-size:11px;
+.Zeit{
+    Schriftgröße: 11 Pixel;
 <!Dokumenttyp HTML>
 Titel
 }
 
-.live{color:#ff3542}
-.finished{color:#bdbdbd}
+:root{
+<!Dokumenttyp HTML>
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    font-size:12px
+Tabelle{
+    Breite: 100 %;
+    Randkollaps: Kollaps;
+    Schriftgrüße: 12px
 }
 
 th{
-    color:var(--muted);
-    font-weight:600;
-    text-align:right;
-    padding:5px 3px
+    Farbe: var(--stummgeschaltet);
+    Schriftstücke: 600;
+    Textausrichtung: rechts;
+    Polsterung: 5px 3px
 }
 
-th:nth-child(2),td:nth-child(2){text-align:left}
+th:nth-child(2),td:nth-child(2){Textausrichtung:links}
 
 td{
-    padding:6px 3px;
-    border-top:1px solid #383838;
-    text-align:right;
-    font-variant-numeric:tabular-nums
+    Polsterung: 6px 3px;
+    Rand oben: 1px solide #383838;
+    Randradius: 99 Pixel;
+    Schriftvariante-numerisch: Tabellennummern
 }
 
 tr.sch td{
-    color:#ffffff;
-    font-weight:750;
-    background:#4a171b
+    Farbe:#ffffff;
+    Schriftstücke: 750;
+    Rastervorlagenspalten:1fr;
 }
 
 .pos{
-    width:20px;
-    color:var(--muted);
-    text-align:left!important
+    Breite: 20 Pixel;
+    Farbe: var(--stummgeschaltet);
+    Textausrichtung: Links!Wichtig
 }
 
-.teamcell{
-    max-width:145px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap
+.Teamzelle{
+    Maximale Breite: 145 px;
+    Überlauf: versteck;
+    Textüberlauf:Ellipse;
+    Leerzeichen:nowrap
 }
 
-.footer{
-    display:flex;
-    justify-content:space-between;
-    gap:8px;
-    margin-top:10px;
-    font-size:10px;
-    color:var(--muted)
+.Fußzeile{
+    Anzeige:flex;
+    Rand:0 0 9px
+    Lücke: 8 Pixel;
+    Rand oben: 10 Pixel;
+    Schriftgrüße: 10 Pixel;
+    Farbe: var(--stummgeschaltet)
 }
 
-a{
-    color:#ff4b55;
-    text-decoration:none
+    Elemente anzeigen: Mitte;
+    Farbe:#ff4b55;
+    Textdekoration: keine
 }
 
-a:hover{text-decoration:underline}
+a:hover{Textdekoration:unterstreichen}
 
-.status{
-    font-size:11px;
-    color:var(--muted);
-    padding:3px 0
+.Status{
+    Schriftgröße: 11 Pixel;
+    Farbe: var(--stummgeschaltet);
+    Polsterung:3px 0
 }
 
-.empty{
-    color:var(--muted);
-    padding:10px 2px
+.leer{
+    Farbe: var(--stummgeschaltet);
+    Polsterung: 10px 2px
 }
 
-@media(min-width:600px){
-    .grid{grid-template-columns:1.1fr .9fr}
-    .grid section:first-child{grid-column:1/-1}
+@media (min-breite:600 px){
+    .grid{grid-template-columns:1.1fr.9fr}
+    .Rasterabschnitt: erstes Kind{Rasterspalte:1/-1}
 }
-
+</style>
 </Kopf>
-<Körper>
+<!Dokumenttyp HTML>Körper>
 <Kopfzeile><div><h1>Bundesliga</h1><div Klasse="Unter">Spieltag · Ergebnisse · Tabelle</div></div><Spanne Klasse="Pille">LIVE-DATEN</Spanne></Kopfzeile>
 <div Klasse="Gitter">
 <Schnitt><h2>Aktuelle & neue Spiele</h2><div ID="Streichhölzer" Klasse="Streichhölzer"><div Klasse="leer">Lade Spieldaten …</div></div></Schnitt>
