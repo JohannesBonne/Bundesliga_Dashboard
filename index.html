@@ -1,249 +1,517 @@
-<!Dokumenttyp HTML>
-<HTML lang="de">
-<Kopf>
-<Meta Zeugensatz    $('aktualisiert').textContent='Aktualisiert: '+neues Datum().toLocaleTimeString('de-DE',{Stunde:'2-stellig',Minute:'2-stellig'})+' · OpenLigaDB';$('aktualisiert').textContent='Aktualisiert: '+neues Datum().toLocaleTimeString('de-DE',{Stunde:'2-stellig',Minute:'2-stellig'})+' · OpenLigaDB';"utf-8">
-<Meta Name="Ansichtsfenster" Inhalieren=„Breite=Gerätebreite,Anfangsskala=1“>
-<Titel>Bundesliga Dashboard</Titel>
-    <style>
-Titel
-:root{
-.Stummgeschaltet{Farbe:var(--stummgeschaltet)}Farbschema: Dunkel; Farbschema: eintauen;
-    Halt Rechtsfruchtigen: Raum dazwischen;- bg:#111111;-bg:#111111;
-    --Panel:#1c1c1c;--Panel:#1c1c1c;
-    - Zeile:#383838;--Zeile:#383838;
-    - Stummgeschaltet:#a6a6a6;--stummgeschaltet:#a6a6a6;
-    - Akzent:#e30613;-Akzent:#e30613;
-    --Text:#ffffff--text:#ffffff
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bundesliga Dashboard</title>
+
+<style>
+:root {
+    color-scheme: dark;
+    --bg: #111111;
+    --panel: #1c1c1c;
+    --line: #383838;
+    --muted: #a6a6a6;
+    --accent: #e30613;
+    --text: #ffffff;
 }
 
-*{Boxgrüße: Border-Box}
-Körper{
-    Marge:0;Marge:0;
-    Polsterung: 14 Pixel; Polsterung: 14 Pixel;
-    Hintergrund: Linearistischer Gradient (145 Grad,#111111,#242424);Hintergrund: Linearer Gradient (145 Grad,#111111,#242424);
-    Farbe: var(--text);Farbe:var(--text);
-    Schriftart: 14px/1,45 System-UI,Segoe UI,Arial, Serifenlosfont:14px/1,45 System-UI,Segoe UI,Arial, Serifenlos
+* {
+    box-sizing: border-box;
 }
 
-Kopfzeile{
-    Anzeige:flex;
-    Elemente anzeigen: Mitte;
-    Halt Rechtsfruchtigen: Raum dazwischen;
-    Lücke: 10 Pixel;
-    Rand bis: 12px
+body {
+    margin: 0;
+    padding: 14px;
+    background: linear-gradient(145deg, #111111, #242424);
+    color: var(--text);
+    font: 14px/1.45 system-ui, Segoe UI, Arial, sans-serif;
 }
 
-h1{
-    Schriftgrüße: 19 Pixel;
-    Marge:0;
-    Schriftstücke: 750;
-    Buchstabenabstand: 0,2 Pixel
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
 }
 
-.sub{Schriftgrüße:11px;Farbe:var(--stummgeschaltet)}
-
-.Pille{
-    Schriftgrüße: 10 Pixel;
-    Farbe:#ffffff;
-    Rand:1px solide #a9000b;
-    Hintergrund:#e30613;
-    Randradius: 99 Pixel;
-    Polsterung: 4px 8px;
-    Leerzeichen:nowrap
+h1 {
+    font-size: 19px;
+    margin: 0;
+    font-weight: 750;
+    letter-spacing: .2px;
 }
 
-.Gitter{
-    Anzeige: Raster;
-    Rastervorlagenspalten:1fr;
-    Lücke: 11px
+.sub {
+    font-size: 11px;
+    color: var(--muted);
 }
 
-Schnitt{
-    Hintergrund: rgba (28,28,28,.96);
-    Rahmen: 1px solide Variable (--Zeile);
-    Randradius: 13 Pixel;
-    Polsterung: 12 Pixel;
-    Mindestbreite: 0
+.pill {
+    font-size: 10px;
+    color: #ffffff;
+    border: 1px solid #a9000b;
+    background: #e30613;
+    border-radius: 99px;
+    padding: 4px 8px;
+    white-space: nowrap;
 }
 
-h2{
-    Schriftgrüße: 13 Pixel;
-    Texttransformation: Großbuchstäbchen;
-    Buchstabenabstand: 0,8 Pixel;
-    Farbe:#ffffff;
-    Rand:0 0 9px
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 11px;
 }
 
-.Stummgeschaltet{Farbe:var(--stummgeschaltet)}
-.Übereinstimmungen{Anzeige:Raster;Lücke:7px}
-
-.Übereinstimmung{
-    Anzeige: Raster;
-    Rastervorlagenspalten:1fr automatisch 1fr;
-    Elemente anzeigen: Mitte;
-    Lücke: 7 Pixel;
-    Polsterung: 8px 9px;
-    Randradius: 9 Pixel;
-    Hintergrund:#292929
+section {
+    background: rgba(28, 28, 28, .96);
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    padding: 12px;
+    min-width: 0;
 }
 
-.Team{
-    Mindestbreite: 0;
-    Überlauf: versteckt;
-    Textüberlauf:Ellipse;
-    Leerzeichen:nowrap
+h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: #ffffff;
+    margin: 0 0 9px;
 }
 
-.Team: letztes Kind{Textausrichtung: rechts}
-
-.Punktzahl{
-    Schriftstärke: 800;
-    Schriftgröße: 15 Pixel;
-    Leerzeichen:nowrap
+.muted {
+    color: var(--muted);
 }
 
-.Zeit{
-    Schriftgröße: 11 Pixel;
-<!Dokumenttyp HTML>
-Titel
+.matches {
+    display: grid;
+    gap: 7px;
 }
 
-:root{
-<!Dokumenttyp HTML>
-
-Tabelle{
-    Breite: 100 %;
-    Randkollaps: Kollaps;
-    Schriftgrüße: 12px
+.match {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 9px;
+    border-radius: 9px;
+    background: #292929;
 }
 
-th{
-    Farbe: var(--stummgeschaltet);
-    Schriftstücke: 600;
-    Textausrichtung: rechts;
-    Polsterung: 5px 3px
+.match.sch-match {
+    border: 1px solid #e30613;
+    background: #351719;
 }
 
-th:nth-child(2),td:nth-child(2){Textausrichtung:links}
-
-td{
-    Polsterung: 6px 3px;
-    Rand oben: 1px solide #383838;
-    Randradius: 99 Pixel;
-    Schriftvariante-numerisch: Tabellennummern
+.team {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-tr.sch td{
-    Farbe:#ffffff;
-    Schriftstücke: 750;
-    Rastervorlagenspalten:1fr;
+.team:last-child {
+    text-align: right;
 }
 
-.pos{
-    Breite: 20 Pixel;
-    Farbe: var(--stummgeschaltet);
-    Textausrichtung: Links!Wichtig
+.score {
+    font-weight: 800;
+    font-size: 15px;
+    white-space: nowrap;
 }
 
-.Teamzelle{
-    Maximale Breite: 145 px;
-    Überlauf: versteck;
-    Textüberlauf:Ellipse;
-    Leerzeichen:nowrap
+.time {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
 }
 
-.Fußzeile{
-    Anzeige:flex;
-    Rand:0 0 9px
-    Lücke: 8 Pixel;
-    Rand oben: 10 Pixel;
-    Schriftgrüße: 10 Pixel;
-    Farbe: var(--stummgeschaltet)
+.live {
+    color: #ff3542;
+    font-weight: 700;
 }
 
-    Elemente anzeigen: Mitte;
-    Farbe:#ff4b55;
-    Textdekoration: keine
+.finished {
+    color: #bdbdbd;
 }
 
-a:hover{Textdekoration:unterstreichen}
-
-.Status{
-    Schriftgröße: 11 Pixel;
-    Farbe: var(--stummgeschaltet);
-    Polsterung:3px 0
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
 }
 
-.leer{
-    Farbe: var(--stummgeschaltet);
-    Polsterung: 10px 2px
+th {
+    color: var(--muted);
+    font-weight: 600;
+    text-align: right;
+    padding: 5px 3px;
 }
 
-@media (min-breite:600 px){
-    .grid{grid-template-columns:1.1fr.9fr}
-    .Rasterabschnitt: erstes Kind{Rasterspalte:1/-1}
+th:nth-child(2),
+td:nth-child(2) {
+    text-align: left;
+}
+
+td {
+    padding: 6px 3px;
+    border-top: 1px solid #383838;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+tr.sch td {
+    color: #ffffff;
+    font-weight: 750;
+    background: #4a171b;
+}
+
+.pos {
+    width: 20px;
+    color: var(--muted);
+    text-align: left !important;
+}
+
+.teamcell {
+    max-width: 145px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 10px;
+    color: var(--muted);
+}
+
+a {
+    color: #ff4b55;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.status {
+    font-size: 11px;
+    color: var(--muted);
+    padding: 3px 0;
+}
+
+.empty {
+    color: var(--muted);
+    padding: 10px 2px;
+}
+
+@media (min-width: 600px) {
+    .grid {
+        grid-template-columns: 1.1fr .9fr;
+    }
+
+    .grid section:first-child {
+        grid-column: 1 / -1;
+    }
 }
 </style>
-</Kopf>
-<!Dokumenttyp HTML>Körper>
-<Kopfzeile><div><h1>Bundesliga</h1><div Klasse="Unter">Spieltag · Ergebnisse · Tabelle</div></div><Spanne Klasse="Pille">LIVE-DATEN</Spanne></Kopfzeile>
-<div Klasse="Gitter">
-<Schnitt><h2>Aktuelle & neue Spiele</h2><div ID="Streichhölzer" Klasse="Streichhölzer"><div Klasse="leer">Lade Spieldaten …</div></div></Schnitt>
-<Schnitt><h2>Tabelle 2026/27</h2><div ID="Tischverpackung" Klasse="Status">Lade Tabelle …</div></Schnitt>
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1>Bundesliga</h1>
+        <div class="sub">Spieltag · Ergebnisse · Tabelle</div>
+    </div>
+
+    <span class="pill">LIVE-DATEN</span>
+</header>
+
+<div class="grid">
+
+    <section>
+        <h2>Aktuelle & neue Spiele</h2>
+
+        <div id="matches" class="matches">
+            <div class="empty">Lade Spieldaten ...</div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Tabelle 2026/27</h2>
+
+        <div id="tableWrap" class="status">
+            Lade Tabelle ...
+        </div>
+    </section>
+
 </div>
-<div Klasse="Fußzeile"><Spanne ID="aktualisiert">Datenquelle: OpenLigaDB</Spanne><a href="https://www.openligadb.de/" Ziel="_leer" rel="Noopener">Datenquelle ↗</a></div>
-<Skript>
-const API='https://api.openligadb.de';
-const Saison=2026; Saison=2026;
-const $=id=>document.getElementById(id); $=id=>document.getElementById(id);
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'„zitieren;','"'":'&#39;'}[c])); esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'„zitieren;',"":'&#39;'}[c]));
-Funktionsergebnis(m){ Ergebnis(m){
- const r=(m.matchResults||[]).filter(x=>x.resultTypeID===2||x.resultTypeID===1).sort((a,b)=>b.resultTypeID-a.resultTypeID)[0];const r=(m.matchResults||[]).Filter (x=>x.resultTypeID===2||x.resultTypeID===1).sort ((a,b)=>b.resultTypeID-a.resultTypeID) [0];
- return r?`${r.pointsTeam1} : ${r.pointsTeam2}`:'– : –';return r?`${r.pointsTeam1} : ${r.pointsTeam2}`:'– : –';
+
+<div class="footer">
+    <span id="updated">Datenquelle: OpenLigaDB</span>
+
+    <a href="https://www.openligadb.de/"
+       target="_blank"
+       rel="noopener noreferrer">
+        Datenquelle ↗
+    </a>
+</div>
+
+<script>
+const API = 'https://api.openligadb.de';
+const season = 2026;
+
+const $ = id => document.getElementById(id);
+
+
+// HTML-Sonderzeichen sicher darstellen
+function esc(value) {
+    return String(value ?? '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[char]);
 }
-Funktionsstatus (m){ Status (m){
- if(m.matchIsFinished)return '<Spanne Klasse="fertig">Beendet</Spanne>';wenn(m.matchIsFinished)return '<Spanne Klasse="fertig">Beendet</Spanne>';
- const d=neues Datum (m.matchDateTime);const d=neues Datum (m.matchDateTime);
- wenn(d<=neues Datum())return '<Spanne Klasse="leben">● LIVE / Offen</Spanne>';wenn(d<=neues Datum())return '<Spanne Klasse="leben">● LIVE / Offen</Spanne>';
- return esc(d.toLocaleDateString('de-DE',{Wochentag:'kurs',Tag:'2-stellig',Monat:'2-stellig'}))+' · '+esc(d.toLocaleTimeString('de-DE',{Stunde:'2-stellig',Minute:'2-stellig'}));return esc(d.toLocaleDateString('de-DE',{Wochentag:'kurs',Tag:'2-stellig',Monat:'2-stellig'}))+' · '+esc(d.toLocaleTimeString('de-DE',{Stunde:'2-stellig',Minute:'2-stellig'}));
+
+
+// Ergebnis eines Spiels ermitteln
+function getResult(match) {
+    const results = (match.matchResults || [])
+        .filter(result =>
+            result.resultTypeID === 2 ||
+            result.resultTypeID === 1
+        )
+        .sort((a, b) => b.resultTypeID - a.resultTypeID);
+
+    const result = results[0];
+
+    return result
+        ? `${result.pointsTeam1} : ${result.pointsTeam2}`
+        : '– : –';
 }
-Funktion renderMatches(Daten){ renderMatches(Daten){
- const jetzt=Datum.jetzt();const now=Datum.now();
- const kommend=data.filter(m=>!m.matchIsFinished).sort((a,b)=>neues Datum(a.matchDateTime)-neues Datum(b.matchDateTime));const kommend=data.filter(m=>!m.matchIsFinished).sort((a,b)=>neues Datum(a.matchDateTime)-neues Datum(b.matchDateTime));
- const recent=data.filter(m=>m.matchIsFinished).sort((a,b)=>neues Datum(b.matchDateTime)-neues Datum(a.matchDateTime)).slice(0,3);const recent=data.filter(m=>m.matchIsFinished).sort((a,b)=>neues Datum(b.matchDateTime)-neues Datum(a.matchDateTime)).slice(0,3);
- const next=kommender.slice (0,6);const next=kommender.slice(0,6);
- const gezeigt=[...recent.slice(0,2).reverse(),...next];const gezeigt=[...recent.slice(0,2).reverse(),...next];
- wenn(!gezeigt.length){$('Übereinstimmungen').innerHTML='<div Klasse="leer">Aktuell keine Spiele vorhanden.</div>';return}if(!gezeigt.länge){$('übereinstimmungen').innerHTML='<div Klasse="leer">Aktuell keine Spiele vorhanden.</div>';return}
- $('Übereinstimmungen').innerHTML=shown.map(m=>{$('Übereinstimmungen').innerHTML=shown.map(m=>{
-  const a=m.team1?.teamName||'Heim';const b=m.team2?.teamName||'Gast';const a=m.team1?.teamName||'Heim';const b=m.team2?.teamName||'Gast';
-  const sch=/schalke/i.test(a+' '+b);const sch=/schalke/i.test(a+' '+b);
-  const score=m.matchIsFinished||neues Datum(m.matchDateTime)<=neues Datum()?Ergebnis (m):'vs';const score=m.matchIsFinished||neues Datum(m.matchDateTime)<=neues Datum ()?Ergebnis (m):'vs';
-  zurückkehren `<div Klasse="übereinstimmen" Stil="${sch?'Umriss:1px solide #4b9b7e;Hintergrund:#1b3b35':''}">zurückkehren `<div Klasse="übereinstimmen" Stil="${sch?'Umriss:1px solide #4b9b7e;Hintergrund:#1b3b35': </div>`;}">
-   <div Klasse="Team">${esc(a)}</div><div Stil="Textausrichtung:Zentrum"><div Klasse="Punktzahl">${esc(Punktzahl)}</div><div Klasse="Zeit">${status(m)}</div></div><div Klasse="Team">${esc(b)}</div>
-  </div>`;
- }).join('');}).join('');
+
+
+// Spielstatus ermitteln
+function getStatus(match) {
+    if (match.matchIsFinished) {
+        return '<span class="finished">Beendet</span>';
+    }
+
+    const date = new Date(match.matchDateTime);
+    const now = new Date();
+
+    if (date <= now) {
+        return '<span class="live">● LIVE / Offen</span>';
+    }
+
+    return esc(
+        date.toLocaleDateString('de-DE', {
+            weekday: 'short',
+            day: '2-digit',
+            month: '2-digit'
+        })
+    ) + ' · ' + esc(
+        date.toLocaleTimeString('de-DE', {
+            hour: '2-digit',
+            minute: '2-digit'
+        })
+    );
 }
-Funktion renderTable(Zeilen){ renderTable(Zeilen){
- wenn(!Zeilen?.Länge){$('tablewrap').textContent='Tabelle derzeit nicht vergügbar.';return}if(!Zeilen?.Länge){$('tablewrap').textContent='Tabelle derzeit nicht verfugbar.';return}
- $('tablewrap').innerHTML=`<Tabelle><Diebe><tr><die>#</die><die>Verein</die><die>Sp</die><die>TD</die><die>Pkt</die></tr></Diebe><Körper>${rows.map((t,i)=>{$('tablewrap').innerHTML=`<Tabelle><Diebe><tr><die>#</die><die>Verein</die><die>Sp</die><die>TD</die><die>Pkt</die></tr></Diebe><Körper>${rows.map((t,i)=>{
- const sch=/schalke/i.test(t.teamName||'');const sch=/schalke/i.test(t.teamName||'');
- zurückkehren `<tr Klasse="${sch?'sch':''}"><td Klasse="pos">${i+1}</td><td Klasse="teamzelle">${esc(t.teamName)}</td><td>${t.matches}</td><td>${t.goalDiff>0?'+':''}${t.goalDiff}</td><td><b>${t.points}</b></td></tr>`;zurückkehren `<tr Klasse="${sch?'sch':''}"><td Klasse="pos">${i+1}</td><td class="teamcell">${esc(t.teamName)}</td><td>${t.matches}</td><td>${t.goalDiff>0?'+':''}${t.goalDiff}</td><td><b>${t.points}</b></td></tr>`;
- }).join('')}</Körper></Tabelle>`;}).join('')}</Körper></Tabelle>`;
+
+
+// Spiele anzeigen
+function renderMatches(data) {
+
+    const now = new Date();
+
+    // Kommende und noch nicht abgeschlossene Spiele
+    const upcoming = data
+        .filter(match => !match.matchIsFinished)
+        .sort((a, b) =>
+            new Date(a.matchDateTime) -
+            new Date(b.matchDateTime)
+        );
+
+    // Zuletzt abgeschlossene Spiele
+    const recent = data
+        .filter(match => match.matchIsFinished)
+        .sort((a, b) =>
+            new Date(b.matchDateTime) -
+            new Date(a.matchDateTime)
+        )
+        .slice(0, 2);
+
+    // Letzte zwei Spiele und nächste sechs Spiele
+    const next = upcoming.slice(0, 6);
+
+    const shown = [
+        ...recent.reverse(),
+        ...next
+    ];
+
+    if (!shown.length) {
+        $('matches').innerHTML =
+            '<div class="empty">Aktuell keine Spiele vorhanden.</div>';
+        return;
+    }
+
+    $('matches').innerHTML = shown.map(match => {
+
+        const home = match.team1?.teamName || 'Heim';
+        const away = match.team2?.teamName || 'Gast';
+
+        // Schalke-Spiele hervorheben
+        const isSchalke =
+            /schalke/i.test(home + ' ' + away);
+
+        const score =
+            match.matchIsFinished ||
+            new Date(match.matchDateTime) <= now
+                ? getResult(match)
+                : 'vs';
+
+        return `
+            <div class="match ${isSchalke ? 'sch-match' : ''}">
+                <div class="team">${esc(home)}</div>
+
+                <div>
+                    <div class="score" style="text-align:center">
+                        ${esc(score)}
+                    </div>
+
+                    <div class="time">
+                        ${getStatus(match)}
+                    </div>
+                </div>
+
+                <div class="team">${esc(away)}</div>
+            </div>
+        `;
+
+    }).join('');
 }
-asynchrone Funktion load(){ Funktion load(){
- versuche{try{
-  const [mr,tr]=warte auf Promise.all([const [mr,tr]=warte auf Promise.all([
-   fetch(`${API}/getmatchdata/bl1/${season}`).then(r=>{if(!r.ok)throw Error('Spieldaten');return r.json()}),fetch(`${API}/getmatchdata/bl1/${season}`).then(r=>{if(!r.ok)throw Error('Spieldaten');return r.json()}),
-   fetch(`${API}/getbltable/bl1/${season}`).then(r=>{if(!r.ok)throw Error('Tabelle');return r.json()})fetch(`${API}/getbltable/bl1/${season}`).then(r=>{if(!r.ok)throw Error('Tabelle');return r.json()})
-  ]);]);
-  renderMatches(mr);renderTable(tr);renderMatches(mr);renderTable(tr);
-  $('aktualisiert').textContent='Aktualisiert: '+neues Datum().toLocaleTimeString('de-DE',{Stunde:'2-stellig',Minute:'2-stellig'})+' · OpenLigaDB';$('aktualisiert').textContent='Aktualisiert: '+neues Datum().toLocaleTimeString('de-DE',{Stunde:'2-stellig',Minute:'2-stellig'})+' · OpenLigaDB';
- }catch(e){
-  $('matches').innerHTML='<div class="empty">Daten konnten gerade nicht geladen werden. Bitte später neu laden.</div>';
-  $('tablewrap').textContent='Tabelle konnte nicht geladen werden.';
-  $('updated').textContent='Verbindung zur Datenquelle fehlgeschlagen · OpenLigaDB';
- }
+
+
+// Bundesliga-Tabelle anzeigen
+function renderTable(rows) {
+
+    if (!rows || !rows.length) {
+        $('tableWrap').textContent =
+            'Tabelle derzeit nicht verfügbar.';
+        return;
+    }
+
+    $('tableWrap').innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Verein</th>
+                    <th>Sp</th>
+                    <th>TD</th>
+                    <th>Pkt</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                ${rows.map((team, index) => {
+
+                    const isSchalke =
+                        /schalke/i.test(team.teamName || '');
+
+                    return `
+                        <tr class="${isSchalke ? 'sch' : ''}">
+                            <td class="pos">${index + 1}</td>
+
+                            <td class="teamcell">
+                                ${esc(team.teamName)}
+                            </td>
+
+                            <td>${team.matches}</td>
+
+                            <td>
+                                ${team.goalDiff > 0 ? '+' : ''}${team.goalDiff}
+                            </td>
+
+                            <td><b>${team.points}</b></td>
+                        </tr>
+                    `;
+
+                }).join('')}
+            </tbody>
+        </table>
+    `;
 }
-load();setInterval(load,5*60*1000);
+
+
+// Daten von OpenLigaDB laden
+async function load() {
+
+    try {
+
+        const [matchResponse, tableResponse] =
+            await Promise.all([
+
+                fetch(`${API}/getmatchdata/bl1/${season}`),
+
+                fetch(`${API}/getbltable/bl1/${season}`)
+
+            ]);
+
+        if (!matchResponse.ok) {
+            throw new Error('Spieldaten konnten nicht geladen werden.');
+        }
+
+        if (!tableResponse.ok) {
+            throw new Error('Tabelle konnte nicht geladen werden.');
+        }
+
+        const matchData = await matchResponse.json();
+        const tableData = await tableResponse.json();
+
+        renderMatches(matchData);
+        renderTable(tableData);
+
+        // Letzte Aktualisierung anzeigen
+        $('updated').textContent =
+            'Aktualisiert: ' +
+            new Date().toLocaleTimeString('de-DE', {
+                hour: '2-digit',
+                minute: '2-digit'
+            }) +
+            ' · OpenLigaDB';
+
+    } catch (error) {
+
+        console.error('Fehler beim Laden:', error);
+
+        $('matches').innerHTML =
+            '<div class="empty">Spieldaten konnten gerade nicht geladen werden. Bitte später erneut versuchen.</div>';
+
+        $('tableWrap').textContent =
+            'Tabelle konnte nicht geladen werden.';
+
+        $('updated').textContent =
+            'Verbindung zur Datenquelle fehlgeschlagen · OpenLigaDB';
+    }
+}
+
+
+// Beim Öffnen laden
+load();
+
+// Alle fünf Minuten automatisch aktualisieren
+setInterval(load, 5 * 60 * 1000);
+
 </script>
-</body></html>
+
+</body>
+</html>
